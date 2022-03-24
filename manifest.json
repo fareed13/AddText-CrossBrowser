@@ -1,0 +1,40 @@
+{
+
+  "description": "If we click button inside popup then etxt from api is update in dom with that id currently id is comment",
+  "manifest_version": 2,
+  "name": "Add Text From Extension",
+  "version": "1.0",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "icons": {
+    "48": "icons/beasts-48.png"
+  },
+
+  "permissions": [
+    "notifications",
+        "activeTab",
+        "webRequest",
+        "<all_urls>"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/beasts-32.png",
+    "theme_icons": [{
+        "light": "icons/beasts-32.png",
+        "dark": "icons/beasts-32.png",
+        "size": 32
+    }],
+    "default_title": "Click to add text in textarea",
+    "default_popup": "popup/choose_beast.html"
+  },
+
+  "web_accessible_resources": [
+    "beasts/*.jpg"
+  ],
+  "content_scripts":[
+    {
+        "matches": ["*://*.localhost/*","<all_urls>"],
+        "js": ["popup/browser-polyfill.js","/content_scripts/beastify.js"]
+    }
+]
+
+}
